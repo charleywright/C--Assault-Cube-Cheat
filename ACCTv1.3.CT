@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="16">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Assault Cube Haxxor -- by Xeno"</Description>
+      <Options moHideChildren="1"/>
+      <Color>408000</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1</ID>
+          <Description>"No Kickback Hack"</Description>
+          <Color>0000FF</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [esp+30],0
+mov [esp+34],0
+mov [esp+38],0
+
+originalcode:
+mov edx,[esp+34]
+mov [esp+40],edx
+
+exit:
+jmp returnhere
+
+"ac_client.exe"+6220A:
+jmp newmem
+nop
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"ac_client.exe"+6220A:
+mov edx,[esp+34]
+mov [esp+40],edx
+//Alt: db 8B 54 24 34 89 54 24 40
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>3</ID>
+          <Description>"No Recoil Hack"</Description>
+          <Color>800040</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+mov eax,0
+mov ecx,0
+
+originalcode:
+mov [esp+2C],eax
+fild dword ptr [esp+2C]
+
+exit:
+jmp returnhere
+
+"ac_client.exe"+6227B:
+jmp newmem
+nop
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"ac_client.exe"+6227B:
+mov [esp+2C],eax
+fild dword ptr [esp+2C]
+//Alt: db 89 44 24 2C DB 44 24 2C
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"No Spread Script"</Description>
+          <Color>A00000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+mov eax,0
+
+originalcode:
+mov ebx,eax
+mov eax,[edx+08]
+
+exit:
+jmp returnhere
+
+"ac_client.exe"+620A2:
+jmp newmem
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"ac_client.exe"+620A2:
+mov ebx,eax
+mov eax,[edx+08]
+//Alt: db 8B 42 04 83 C4 04
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>50</ID>
+          <Description>"SuperSpeed (Needed)"</Description>
+          <Color>008080</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(Patch,2048)
+alloc(SuperSpeed,4)
+registersymbol(SuperSpeed)
+label(returnhere)
+label(exit)
+
+SuperSpeed: //this is allocated memory, you have read,write,execute access
+dd (float)900.0
+
+Patch:
+fcomp dword ptr [SuperSpeed]
+
+exit:
+jmp returnhere
+
+"ac_client.exe"+5B43C:
+jmp Patch
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(Patch)
+dealloc(SuperSpeed)
+unregistersymbol(SuperSpeed)
+
+"ac_client.exe"+5B43C:
+fcomp dword ptr [ac_client.exe+EE264]
+//Alt: db D8 1D 64 E2 4E 00
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>49</ID>
+          <Description>"Player Speed (SS Script Needed)"</Description>
+          <Color>400040</Color>
+          <VariableType>Float</VariableType>
+          <Address>509B74</Address>
+          <Offsets>
+            <Offset>50</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>51</ID>
+          <Description>"Knife Range Hack"</Description>
+          <Color>0000FF</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(Patch,2048)
+alloc(KnifeHack,4)
+registersymbol(KnifeHack)
+label(returnhere)
+label(exit)
+
+KnifeHack: //this is allocated memory, you have read,write,execute access
+dd (float)900000000000.0
+
+Patch:
+fld dword ptr [KnifeHack]
+
+exit:
+jmp returnhere
+
+"ac_client.exe"+6445F:
+jmp Patch
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(Patch)
+dealloc(KnifeHack)
+unregistersymbol(KnifeHack)
+
+"ac_client.exe"+6445F:
+fld dword ptr [ac_client.exe+EE480]
+//Alt: db D9 05 80 E4 4E 00
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>12</ID>
+          <Description>"Fly Hack/SuperJump Hack"</Description>
+          <Options moHideChildren="1"/>
+          <Color>004080</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>10</ID>
+              <Description>"velocity z"</Description>
+              <Color>80000008</Color>
+              <VariableType>Float</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>18</Offset>
+              </Offsets>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Set Value</Action>
+                  <Keys>
+                    <Key>17</Key>
+                    <Key>32</Key>
+                  </Keys>
+                  <Value>2</Value>
+                  <Description>fly Hax</Description>
+                  <ID>0</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>13</ID>
+              <Description>"unk z"</Description>
+              <Color>80000008</Color>
+              <VariableType>Float</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>54</Offset>
+              </Offsets>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Set Value</Action>
+                  <Keys>
+                    <Key>17</Key>
+                    <Key>32</Key>
+                  </Keys>
+                  <Value>0</Value>
+                  <Description>fly Hax</Description>
+                  <ID>0</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>22</ID>
+          <Description>"Bots Only"</Description>
+          <Options moHideChildren="1"/>
+          <Color>00FF00</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>14</ID>
+              <Description>"Health"</Description>
+              <Color>0000FF</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>F8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>15</ID>
+              <Description>"Armor"</Description>
+              <Color>808080</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>FC</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>16</ID>
+              <Description>"AssaultRifle Ammo"</Description>
+              <Color>400040</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>150</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>17</ID>
+              <Description>"Pistol Ammo"</Description>
+              <Color>FF0000</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>13C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>18</ID>
+              <Description>"SMG Ammo"</Description>
+              <Color>408000</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>148</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>19</ID>
+              <Description>"SniperRifle Ammo"</Description>
+              <Color>000080</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>14C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>20</ID>
+              <Description>"Shotgun Ammo"</Description>
+              <Color>FF0080</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>144</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>21</ID>
+              <Description>"Carabine Ammo"</Description>
+              <Color>FF80FF</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>140</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>40</ID>
+              <Description>"Godmode Script"</Description>
+              <Color>0000FF</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(AddHealth)
+label(exit)
+
+
+newmem: //this is allocated memory, you have read,write,execute access
+push esi
+mov esi, [509B74]
+add esi, 000000F4
+cmp ebx, esi
+pop esi
+je AddHealth
+
+originalcode:
+sub [ebx+04],edi
+mov eax,edi
+jmp exit
+
+AddHealth:
+add [ebx+04],edi
+
+exit:
+jmp returnhere
+
+"ac_client.exe"+29D1F:
+jmp newmem
+returnhere:
+
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"ac_client.exe"+29D1F:
+sub [ebx+04],edi
+mov eax,edi
+//Alt: db 29 7B 04 8B C7
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>43</ID>
+              <Description>"Dual Pistols Enable/Disable"</Description>
+              <Color>0080FF</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>10C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>44</ID>
+              <Description>"Double Pistol Ammo"</Description>
+              <Color>000040</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>15C</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>30</ID>
+          <Description>"MISC"</Description>
+          <Options moHideChildren="1"/>
+          <Color>0000FF</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>23</ID>
+              <Description>"Ground Position on Map"</Description>
+              <Color>800080</Color>
+              <VariableType>Float</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>5C</Offset>
+              </Offsets>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Increase Value</Action>
+                  <Keys>
+                    <Key>17</Key>
+                    <Key>18</Key>
+                  </Keys>
+                  <Value>1</Value>
+                  <Description>Float In Air Up</Description>
+                  <ID>0</ID>
+                </Hotkey>
+                <Hotkey>
+                  <Action>Decrease Value</Action>
+                  <Keys>
+                    <Key>17</Key>
+                    <Key>9</Key>
+                  </Keys>
+                  <Value>1</Value>
+                  <Description>Float In Air Down</Description>
+                  <ID>1</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>24</ID>
+              <Description>"Reload Ammo Left AssaultRifle"</Description>
+              <Color>800080</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>128</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>25</ID>
+              <Description>"Reload Ammo Left Pistol"</Description>
+              <Color>800080</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>114</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26</ID>
+              <Description>"Reload Ammo Left SMG"</Description>
+              <Color>800080</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>120</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>27</ID>
+              <Description>"Reload Ammo Left SniperRifle"</Description>
+              <Color>800080</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>124</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>28</ID>
+              <Description>"Reload Ammo Left Shotgun"</Description>
+              <Color>800080</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>11C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>29</ID>
+              <Description>"Reload Ammo Left Carabine"</Description>
+              <Color>800080</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>118</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>32</ID>
+              <Description>"Grenade Amount"</Description>
+              <Color>800080</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>158</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>39</ID>
+          <Description>"MISC 2"</Description>
+          <Options moHideChildren="1"/>
+          <Color>008000</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>31</ID>
+              <Description>"Knife Slash Speed"</Description>
+              <Color>0000FF</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>160</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>33</ID>
+              <Description>"Pistol Shoot/Reload Speed"</Description>
+              <Color>0000FF</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>164</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>34</ID>
+              <Description>"Carabine Shoot/Reload Speed"</Description>
+              <Color>0000FF</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>168</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>35</ID>
+              <Description>"Shotgun Shoot/Reload Speed"</Description>
+              <Color>0000FF</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>16C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>36</ID>
+              <Description>"SMG Shoot/Reload Speed"</Description>
+              <Color>0000FF</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>170</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>37</ID>
+              <Description>"SniperRifle Shoot/Reload Speed"</Description>
+              <Color>0000FF</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>174</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>38</ID>
+              <Description>"AssaultRifle Shoot/Reload Speed"</Description>
+              <Color>0000FF</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>178</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>48</ID>
+          <Description>"MISC 3"</Description>
+          <Options moHideChildren="1"/>
+          <Color>400040</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>45</ID>
+              <Description>"Player Death's"</Description>
+              <Color>00FF00</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>204</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>46</ID>
+              <Description>"Jump/Fall Speed"</Description>
+              <Color>00FF00</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>54</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>47</ID>
+              <Description>"NoClip"</Description>
+              <Color>00FF00</Color>
+              <VariableType>Float</VariableType>
+              <Address>509B74</Address>
+              <Offsets>
+                <Offset>58</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Change of mov [esi+34],edx</Description>
+      <Address>0045BDD8</Address>
+      <ModuleName>ac_client.exe</ModuleName>
+      <ModuleNameOffset>5BDD8</ModuleNameOffset>
+      <Before>
+        <Byte>46</Byte>
+        <Byte>08</Byte>
+        <Byte>8B</Byte>
+        <Byte>4E</Byte>
+        <Byte>0C</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>56</Byte>
+        <Byte>34</Byte>
+      </Actual>
+      <After>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+        <Byte>38</Byte>
+        <Byte>89</Byte>
+        <Byte>4E</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov [esi+38],eax</Description>
+      <Address>0045BDDB</Address>
+      <ModuleName>ac_client.exe</ModuleName>
+      <ModuleNameOffset>5BDDB</ModuleNameOffset>
+      <Before>
+        <Byte>4E</Byte>
+        <Byte>0C</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+        <Byte>38</Byte>
+      </Actual>
+      <After>
+        <Byte>89</Byte>
+        <Byte>4E</Byte>
+        <Byte>3C</Byte>
+        <Byte>D9</Byte>
+        <Byte>46</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov [esi+3C],ecx</Description>
+      <Address>0045BDDE</Address>
+      <ModuleName>ac_client.exe</ModuleName>
+      <ModuleNameOffset>5BDDE</ModuleNameOffset>
+      <Before>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>4E</Byte>
+        <Byte>3C</Byte>
+      </Actual>
+      <After>
+        <Byte>D9</Byte>
+        <Byte>46</Byte>
+        <Byte>28</Byte>
+        <Byte>D8</Byte>
+        <Byte>66</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

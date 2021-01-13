@@ -1,0 +1,16 @@
+Player (ac_client.exe+0011E20C):
+  - Health (int): "F8"
+  - Armor (int): "FC"
+  - Name (string): "225"
+  - Position:
+    - X (float): "4"
+    - Y (float): "8"
+    - Z (flaot): "C"
+  - Weapons (374): 
+    - Crosshair (8):
+      - X (float): "40"
+      - y (float): "44"
+    - Name (string): "C"
+    - Ammo (int): "14"
+    - Reserve (int): "10"
+    - Grenade (int): "ac_client.exe+0011E20C 158" # Not in weapons entity, not sure why
